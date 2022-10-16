@@ -12,8 +12,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
-    );
+        home: HomePage(),
+        theme: ThemeData(brightness: Brightness.light, useMaterial3: true));
   }
 }
 
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           title: const Text("Timer"),
           centerTitle: false,
         ),
-        body: Timer());
+        body: const Timer());
   }
 }
 
@@ -37,24 +37,43 @@ class Mycircle extends StatelessWidget {
   Widget build(BuildContext context) {
     final tween = Tween<double>(begin: 0, end: 1);
     return Center(
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-            border: Border.all(
-          width: 2.0,
-          color: Colors.red,
-        )),
-        width: 400,
-        height: 400,
-        child: TweenAnimationBuilder<double>(
-          tween: tween,
-          duration: const Duration(seconds: 20),
-          builder: (context, value, child) {
-            return CustomPaint(
-              painter: RingPainter(value),
-            );
-          },
-        ),
+      child: Column(
+        children: [
+          Container(
+            decoration:
+                BoxDecoration(border: Border.all(width: 4, color: Colors.red)),
+            child: Ink(
+              decoration: const ShapeDecoration(
+                color: Colors.purple,
+                shape: CircleBorder(),
+              ),
+              child: const IconButton(
+                icon: Icon(Icons.play_arrow),
+                onPressed: null,
+                tooltip: "Start",
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                border: Border.all(
+              width: 2.0,
+              color: Colors.red,
+            )),
+            width: 400,
+            height: 400,
+            child: TweenAnimationBuilder<double>(
+              tween: tween,
+              duration: const Duration(seconds: 20),
+              builder: (context, value, child) {
+                return CustomPaint(
+                  painter: RingPainter(value),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

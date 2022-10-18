@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:trihims_clock/timer.dart';
-import 'dart:math';
+
+import 'package:trihims_clock/views/timer.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -12,13 +12,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: HomePage(),
+        home: const HomePage(),
         theme: ThemeData(brightness: Brightness.light, useMaterial3: true));
   }
 }
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+//Widget abondoned
 class Mycircle extends StatelessWidget {
   const Mycircle({Key? key}) : super(key: key);
 
@@ -79,6 +80,8 @@ class Mycircle extends StatelessWidget {
   }
 }
 
+
+//abondoned
 class RingPainter extends CustomPainter {
   final double _arcDegree;
   final pi = 3.14;

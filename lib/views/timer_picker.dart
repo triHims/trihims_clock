@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class TimerPicker {
   //Test Widget designed to pick the second hours and minutes
+    // Timer Input is real widget this will just only test things 
   // Like material ui
   static const minMultiplier = 1;
   static const maxMultiplier = 1.8;

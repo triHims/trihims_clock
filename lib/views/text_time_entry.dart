@@ -18,21 +18,61 @@ class _TextTimeEntryState extends State<TextTimeEntry> {
   void initState() {
     hoursController = TextEditingController(text: '7');
     minutesController = TextEditingController(text: '15');
-    secondsController = TextEditingController();
+    secondsController = TextEditingController(text: '20');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.move_up),
+              onPressed: null,
+              tooltip: 'increment',
+            ),
+            SizedBox(
+              width: 70,
+              height: 80,
+              child: TextField(
+                controller: hoursController,
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 10,
+                  ),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SizedBox(
+            height: 80,
+            child: Text(
+              ':',
+              style: TextStyle(
+                  height: 2, fontSize: 30, fontWeight: FontWeight.w700),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
         SizedBox(
           width: 70,
           height: 80,
           child: TextField(
-            style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w700),
-            controller: hoursController,
-            decoration: InputDecoration(
+            controller: minutesController,
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+            textAlign: TextAlign.center,
+            decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 10,
@@ -41,13 +81,30 @@ class _TextTimeEntryState extends State<TextTimeEntry> {
             ),
           ),
         ),
-        const Text(':'),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SizedBox(
+            height: 80,
+            child: Text(
+              ':',
+              style: TextStyle(
+                  height: 2, fontSize: 30, fontWeight: FontWeight.w700),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
         SizedBox(
           width: 70,
           height: 80,
           child: TextField(
-            controller: minutesController,
-            decoration: InputDecoration(
+            controller: secondsController,
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+            textAlign: TextAlign.center,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
               border: OutlineInputBorder(),
             ),
           ),

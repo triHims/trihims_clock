@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trihims_clock/helpers/Formatters/time_input_formatter.dart';
 
@@ -63,10 +62,6 @@ class _TextTimeEntryState extends State<TextTimeEntry> {
   }
 }
 
-myListner(TextEditingController textController) {
-  final currentValue = textController.value.text;
-  int.parse(currentValue);
-}
 
 Widget getTimeInputBox(TextEditingController textController, bool isHour) {
   int MOD = isHour ? 100 : 61;

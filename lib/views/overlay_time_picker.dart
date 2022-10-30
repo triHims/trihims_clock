@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TimerPicker {
+class OverLayTimePicker {
   //Test Widget designed to pick the second hours and minutes
     // Timer Input is real widget this will just only test things 
   // Like material ui

@@ -98,14 +98,14 @@ class _ClockDecorState extends State<ClockDecor> {
                 width: 30,
                 height: 30,
                 toolTip: "Start/Pause",
-                color: Colors.blue,
+                color: Theme.of(context).colorScheme.primary,
                 state: Pair(timerActive, togglePlayState),
                 iconPairs: Pair(Icons.pause, Icons.play_arrow)),
             getAnimatedButton(
                 width: 30,
                 height: 30,
                 toolTip: "Restart",
-                color: Colors.grey[500]!,
+                color: Theme.of(context).colorScheme.secondary,
                 state: Pair(true, () {
                   print("Hallo");
                   // TimerPicker().showOverlay(context: context);
@@ -116,7 +116,7 @@ class _ClockDecorState extends State<ClockDecor> {
                 width: 30,
                 height: 30,
                 toolTip: "SHow demo toolbaar",
-                color: Colors.grey[500]!,
+                color: Theme.of(context).colorScheme.secondary,
                 state: Pair(true, () {
                   print("Hallo");
                   final newTime = showTimePicker(

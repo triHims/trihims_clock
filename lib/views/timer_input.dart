@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:trihims_clock/views/text_time_entry.dart';
 
@@ -14,9 +13,19 @@ class TimerInput {
 
     OverlayEntry? overlay;
 
-
     overlay = OverlayEntry(
       builder: (context) {
+        final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
+            textStyle: const TextStyle(fontSize: 15),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
+            onSurface: Theme.of(context).colorScheme.primary);
+        final ButtonStyle cancelElevatedButtonStyle = ElevatedButton.styleFrom(
+            textStyle: const TextStyle(fontSize: 15),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
+            onPrimary: Theme.of(context).colorScheme.onSurface);
+
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () {
@@ -34,7 +43,7 @@ class TimerInput {
                   minHeight: size.height * minMultiplier,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
@@ -81,7 +90,40 @@ class TimerInput {
                       const SizedBox(
                         height: 10,
                       ),
-                                            const TextTimeEntry(),
+                      const TextTimeEntry(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Divider(
+                        color: Colors.black.withAlpha(50),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: ElevatedButton.icon(
+                                icon: const Icon(Icons.save),
+                                label: const Text("Save"),
+                                style: elevatedButtonStyle,
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: ElevatedButton.icon(
+                                icon: const Icon(Icons.cancel_sharp),
+                                label: const Text('Cancel'),
+                                style: cancelElevatedButtonStyle,
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

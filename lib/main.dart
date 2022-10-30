@@ -13,7 +13,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: const HomePage(),
-        theme: ThemeData(brightness: Brightness.light, useMaterial3: true));
+        theme: ThemeData(
+          brightness: Brightness.light,
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(1,85, 40, 111,))
+        ));
   }
 }
 
@@ -79,7 +83,6 @@ class Mycircle extends StatelessWidget {
     );
   }
 }
-
 
 //abondoned
 class RingPainter extends CustomPainter {

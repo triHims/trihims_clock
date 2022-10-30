@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 //Class that accepts only numbers
 //If isHour is passed then numbers upto 00-99 are accepted
 // else numbers only 00-60
+//NOTE: This needs improvement
 class TimeInputFormatter extends TextInputFormatter {
   final bool isHour;
   TimeInputFormatter({required this.isHour});
@@ -14,8 +15,8 @@ class TimeInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newString = newValue.text;
-    print("Old value ${oldValue.text}");
-    print("New value ${newValue.text}");
+    print("Old value ${oldValue.text} ${oldValue.selection}");
+    print("New value ${newValue.text} ${newValue.selection}");
     if (newString.contains(numberFilterRegex)) {
       print("Contains nonnumber");
       return oldValue;

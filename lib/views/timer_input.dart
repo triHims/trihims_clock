@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:trihims_clock/views/text_time_entry.dart';
 
+typedef SetTime = void Function(String input);
+
 class TimerInput {
   static const minMultiplier = 1;
   static const maxMultiplier = 1.8;
   late final TextEditingController _labelInput;
-  void showOverlay({required BuildContext context}) {
+  void showOverlay({
+    required BuildContext context,
+    required SetTime callBack,
+    required String initialTime,
+  }) {
     final state = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
     final size = renderBox.size;
+    var currentTime = initialTime;
     _labelInput = TextEditingController();
 
     OverlayEntry? overlay;
@@ -90,7 +97,12 @@ class TimerInput {
                       const SizedBox(
                         height: 10,
                       ),
-                      const TextTimeEntry(),
+                      TextTimeEntry(
+                        initialValue: initialTime,
+                        transmitTImeToParent: (time) {
+                          currentTime = time;
+                        }, // Pass initalTime to dialer and then use callback o update time
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -107,7 +119,9 @@ class TimerInput {
                                 icon: const Icon(Icons.save),
                                 label: const Text("Save"),
                                 style: elevatedButtonStyle,
-                                onPressed: () {},
+                                onPressed: () {
+                                  callBack(currentTime);
+                                },
                               ),
                             ),
                           ),
@@ -118,7 +132,9 @@ class TimerInput {
                                 icon: const Icon(Icons.cancel_sharp),
                                 label: const Text('Cancel'),
                                 style: cancelElevatedButtonStyle,
-                                onPressed: () {},
+                                onPressed: () {
+                                  overlay?.remove();
+                                },
                               ),
                             ),
                           ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:trihims_clock/comps/animated_button.dart';
 import 'package:trihims_clock/helpers/clock_ring_painter_widget.dart';
@@ -36,7 +35,6 @@ class Timer extends StatelessWidget {
   }
 }
 
-
 // Must maintain the circle and other timer , for a particular timer card
 class ClockDecor extends StatefulWidget {
   const ClockDecor({Key? key}) : super(key: key);
@@ -50,9 +48,10 @@ class _ClockDecorState extends State<ClockDecor> {
   void initState() {
     // TODO: implement initState
     startTime = DateTime.now().millisecondsSinceEpoch;
-        super.initState();
+    super.initState();
   }
-    
+
+  String timerDuration = "00:00:00";
 
   double endTime = 0;
   int startTime = 0;
@@ -80,7 +79,7 @@ class _ClockDecorState extends State<ClockDecor> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "00:00:00", // style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 50),
+                  timerDuration, // style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 50),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
@@ -109,7 +108,15 @@ class _ClockDecorState extends State<ClockDecor> {
                 state: Pair(true, () {
                   print("Hallo");
                   // TimerPicker().showOverlay(context: context);
-                                TimerInput().showOverlay(context: context);
+                  TimerInput().showOverlay(
+                    context: context,
+                    callBack: (input) {
+                      setState(() {
+                        timerDuration = input;
+                      });
+                    },
+                    initialTime: timerDuration,
+                  );
                 }),
                 iconPairs: Pair(Icons.replay, null)),
             getAnimatedButton(
@@ -132,5 +139,3 @@ class _ClockDecorState extends State<ClockDecor> {
     );
   }
 }
-
-

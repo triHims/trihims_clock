@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trihims_clock/helpers/Formatters/time_input_formatter.dart';
+import 'package:trihims_clock/views/timer_input.dart' show SetTime;
 
 class TextTimeEntry extends StatefulWidget {
-  const TextTimeEntry({Key? key}) : super(key: key);
+  final String initialValue;
+  final SetTime transmitTImeToParent;
+  const TextTimeEntry(
+      {Key? key,
+      required this.initialValue,
+      required this.transmitTImeToParent})
+      : super(key: key);
 
   @override
   State<TextTimeEntry> createState() => _TextTimeEntryState();
@@ -16,9 +23,10 @@ class _TextTimeEntryState extends State<TextTimeEntry> {
 
   @override
   void initState() {
-    hoursController = TextEditingController(text: '07');
-    minutesController = TextEditingController(text: '15');
-    secondsController = TextEditingController(text: '20');
+    List<String> times = widget.initialValue.split(':');
+    hoursController = TextEditingController(text: times[0]);
+    minutesController = TextEditingController(text: times[1]);
+    secondsController = TextEditingController(text: times[2]);
     super.initState();
   }
 
@@ -61,7 +69,6 @@ class _TextTimeEntryState extends State<TextTimeEntry> {
     );
   }
 }
-
 
 Widget getTimeInputBox(TextEditingController textController, bool isHour) {
   int MOD = isHour ? 100 : 61;
